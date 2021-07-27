@@ -7,7 +7,7 @@ understand the risks of making messes. - Clean Code
 @wedsonlima = Person.new.tap do |p|
                 p.name = "Wedson Lima"
                 p.dev_since = "2009"
-                p.likes = %w[books musics]
+                p.likes = %w[books music]
               end
 ```
 
