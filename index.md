@@ -1,6 +1,7 @@
+# Wedson Lima (@wedsonlima)
+
 >...is unprofessional for programmers to bend to the will of managers who don’t
 understand the risks of making messes. - Clean Code
-
 
 ### About Work
 
