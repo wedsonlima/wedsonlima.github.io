@@ -1,5 +1,3 @@
 # Just another dev page
 
-```ruby
-@wedsonlima = "Wedson Lima"
-```
+Wedson Lima
