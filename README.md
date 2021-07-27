@@ -1,3 +1,5 @@
-# Wedson Lima (@wedsonlima)
+# Just another dev page
 
-Just another dev page
+```ruby
+@wedsonlima = "Wedson Lima"
+```
