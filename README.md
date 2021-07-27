@@ -1,3 +1,4 @@
-# Just another dev page
+# Wedson Lima
 
-Wedson Lima
+Just another dev
+(@wedsonlima)
