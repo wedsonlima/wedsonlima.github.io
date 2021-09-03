@@ -29,4 +29,4 @@ I have a new idea for a big project every weekday and the pile of them are start
 
 --
 
-Oh, I have a small bakery with my brother. It's kinda cool.
+Oh, I have a small bakery with my brother... :)
