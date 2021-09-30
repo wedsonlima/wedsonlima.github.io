@@ -1,17 +1,14 @@
-# PostgreSQL with docker
+# Using Docker to work with multiple PostgreSQL versions
 
-Everyone that works in many projects at the same time has faced this problem:
+How to work with multiple PostgreSQL versions at the same time without losing my mind?
 
-    How to work with multiple postgres version at same time without losing my mind.
-
-An then *Docker* was made.
+That's what we are trying to answer here. With **Docker**.
 
 ## Docker PG Volumes
 
-Data saved in a docker container are lost whe that container is destroyed.
-We can save the data created using volumes.
+Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.
 
-Thats how we create a volume to use with a pg version 9.6:
+That's how we create a volume to use with a pg version 9.6:
 
 ```console
 docker volume create pgdata96
@@ -29,9 +26,9 @@ I like to map each pg version with a similar port. I follow this little pattern:
 
 | version    | port |
 |---------   |------|
-| postgres96 | 54*96* |
-| postgres12 | 54*12* |
-| postgres13 | 54*13* |
+| postgres96 | 54**96** |
+| postgres12 | 54**12** |
+| postgres13 | 54**13** |
 
 This command will download, run and setup for us a container with a postgres 9.6:
 
@@ -49,7 +46,7 @@ Look how I mapped the ports.
 
 ## Create a DB
 
-Let's create a dabatase called **todolist** in the pg version 13:
+Let's create a database called **todolist** in the pg version 13:
 
 ```console
 docker exec -i postgres13 psql -U postgres -c "CREATE DATABASE todolist WITH OWNER=postgres;"
@@ -63,13 +60,13 @@ docker exec -it postgres13 psql -U postgres
 
 and then
 
-```console
+```pgsql
 $ CREATE DATABASE todolist;
 ```
 
 ## Start the container
 
-When you restart your machine,or for some other reasons unknown, you can start the containers like this:
+When you restart your machine, or for some other reasons unknown, you can start the containers like this:
 
 ```console
 docker start postgres13
@@ -94,6 +91,7 @@ docker exec -i postgres13 psql -U postgres -d todolist -f dump.sql
 And be happy ever after...
 
 
---
+----
+
 Wedson Lima
 @wedsonlima
