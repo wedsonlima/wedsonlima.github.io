@@ -1,0 +1,209 @@
+<!doctype html><html dir=ltr lang=en data-theme><head>
+<title>
+Wedson Lima
+|
+PostgreSQL with Docker
+</title>
+<meta charset=utf-8><meta name=generator content="Hugo 0.89.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="
+      Just Another Dev
+
+
+    ">
+<link rel=stylesheet href=/css/main.min.847a0e43351660d2917b48501a68e692004210084f3d09c49017b8faa5008da0.css integrity="sha256-hHoOQzUWYNKRe0hQGmjmkgBCEAhPPQnEkBe4+qUAjaA=" crossorigin=anonymous type=text/css>
+<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
+<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=canonical href=/post/pg/pg-with-docker/>
+<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="PostgreSQL with Docker">
+<meta name=twitter:description content="Using Docker to work with multiple PostgreSQL versions How to work with multiple PostgreSQL versions at the same time without losing my mind?
+That&rsquo;s what we are trying to answer here. With Docker.
+Docker PG Volumes Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.
+That&rsquo;s how we create a volume to use with a pg version 9.6:">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"post","name":"PostgreSQL with Docker","headline":"PostgreSQL with Docker","alternativeHeadline":"","description":"
+      
+        Using Docker to work with multiple PostgreSQL versions How to work with multiple PostgreSQL versions at the same time without losing my mind?\nThat\u0026rsquo;s what we are trying to answer here. With Docker.\nDocker PG Volumes Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.\nThat\u0026rsquo;s how we create a volume to use with a pg version 9.6:
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wedsonlima.github.io\/post\/pg\/pg-with-docker\/"},"author":{"@type":"Person","name":"Wedson Lima"},"creator":{"@type":"Person","name":"Wedson Lima"},"accountablePerson":{"@type":"Person","name":"Wedson Lima"},"copyrightHolder":{"@type":"Person","name":"Wedson Lima"},"copyrightYear":"2021","dateCreated":"2021-09-30T14:53:44.00Z","datePublished":"2021-09-30T14:53:44.00Z","dateModified":"2021-09-30T14:53:44.00Z","publisher":{"@type":"Organization","name":"Wedson Lima","url":"https://wedsonlima.github.io","logo":{"@type":"ImageObject","url":"https:\/\/wedsonlima.github.iofavicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/wedsonlima.github.io\/post\/pg\/pg-with-docker\/","wordCount":"306","genre":[],"keywords":[]}</script>
+</head>
+<body>
+<header><div class="page-top
+animated fadeInDown">
+<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+<nav>
+<ul class=nav__list id=navMenu>
+<div class=nav__links>
+<li>
+<a href=/ title>Home</a>
+</li>
+<li>
+<a href=/post/ title>Posts</a>
+</li>
+<li>
+<a href=/about/ title>About</a>
+</li>
+</div>
+<ul>
+<li>
+<a class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</ul>
+</nav>
+</div>
+</header>
+<div class=wrapper>
+<aside><div class="sidebar
+animated fadeInDown">
+<div class=sidebar__content>
+<div class=logo-title>
+<div class=title>
+<img src=/images/palantir.png alt="profile picture">
+<h3 title><a href=/>Wedson Lima</a></h3>
+<div class=description>
+<p>Just Another Dev</p>
+</div>
+</div>
+</div>
+<ul class=social-links>
+<li>
+<a href=https://github.com/wedsonlima rel=me aria-label=Github>
+<i class="fab fa-github fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://www.linkedin.com/in/wedson-lima/ rel=me aria-label=Linkedin>
+<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=mailto:wedson.sousa.lima@gmail.com rel=me aria-label=E-mail>
+<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div><footer class="footer footer--sidebar">
+<div class=by_farbox>
+<ul class=footer__list>
+<li class=footer__item>
+&copy;
+Wedson Lima
+2021
+</li>
+</ul>
+</div>
+</footer>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
+</aside>
+<main>
+<div class=autopagerize_page_element>
+<div class=content>
+<div class="post
+animated fadeInDown">
+<div class=post-content>
+<div class=post-title>
+<h1>PostgreSQL with Docker</h1>
+<div class=info>
+<em class="fas fa-calendar-day"></em>
+<span class=date>
+Thu, Sep 30, 2021
+</span>
+<em class="fas fa-stopwatch"></em>
+<span class=reading-time>2-minute read</span>
+</div>
+</div><h1 id=using-docker-to-work-with-multiple-postgresql-versions>Using Docker to work with multiple PostgreSQL versions</h1>
+<p>How to work with multiple PostgreSQL versions at the same time without losing my mind?</p>
+<p>That&rsquo;s what we are trying to answer here. With <strong>Docker</strong>.</p>
+<h2 id=docker-pg-volumes>Docker PG Volumes</h2>
+<p>Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.</p>
+<p>That&rsquo;s how we create a volume to use with a pg version 9.6:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker volume create pgdata96
+</code></pre></div><p>And that&rsquo;s how we create a volume for pg 13:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker volume create pgdata13
+</code></pre></div><h2 id=docker-pg-containers>Docker PG Containers</h2>
+<p>I like to map each pg version with a similar port. I follow this little pattern:</p>
+<table>
+<thead>
+<tr>
+<th>version</th>
+<th>port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postgres96</td>
+<td>54<strong>96</strong></td>
+</tr>
+<tr>
+<td>postgres12</td>
+<td>54<strong>12</strong></td>
+</tr>
+<tr>
+<td>postgres13</td>
+<td>54<strong>13</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This command will download, run and setup for us a container with a postgres 9.6:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker run --name postgres96 -e POSTGRES_PASSWORD=123456 -d -p 5496:5432 -v pgdata96:/var/lib/postgresql/data postgres:9.6
+</code></pre></div><p>And the same for a postgres 13:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker run --name postgres13 -e POSTGRES_PASSWORD=123456 -d -p 5413:5432 -v pgdata13:/var/lib/postgresql/data postgres:13
+</code></pre></div><p>Look how I mapped the ports.</p>
+<h2 id=create-a-db>Create a DB</h2>
+<p>Let&rsquo;s create a database called <strong>todolist</strong> in the pg version 13:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker exec -i postgres13 psql -U postgres -c &#34;CREATE DATABASE todolist WITH OWNER=postgres;&#34;
+</code></pre></div><p>Or you can log in to the container e create it using <em>psql</em>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker exec -it postgres13 psql -U postgres
+</code></pre></div><p>and then</p>
+<pre tabindex=0><code class=language-pgsql data-lang=pgsql>$ CREATE DATABASE todolist;
+</code></pre><h2 id=start-the-container>Start the container</h2>
+<p>When you restart your machine, or for some other reasons unknown, you can start the containers like this:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker start postgres13
+</code></pre></div><p>If you need to run other containers you can run like this:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker start postgres13 redis memcached
+</code></pre></div><p>That is no need to run the command <code>docker run</code> again.</p>
+<h2 id=restore-a-dump>Restore a dump</h2>
+<p>That&rsquo;s how you can restore a local dump file into a database:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker exec -i postgres13 psql -U postgres -d todolist -f dump.sql
+</code></pre></div><p>And be happy ever after&mldr;</p>
+<hr>
+<p>Wedson Lima
+@wedsonlima</p>
+</div>
+<div class=post-footer>
+<div class=info>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div><footer class="footer footer--base">
+<div class=by_farbox>
+<ul class=footer__list>
+<li class=footer__item>
+&copy;
+Wedson Lima
+2021
+</li>
+</ul>
+</div>
+</footer>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
+</html>
