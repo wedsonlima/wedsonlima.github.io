@@ -4,7 +4,7 @@ Wedson Lima
 |
 PostgreSQL with Docker
 </title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.89.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset=utf-8><meta name=generator content="Hugo 0.89.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
       Just Another Dev
 
@@ -13,6 +13,9 @@ PostgreSQL with Docker
 <link rel=stylesheet href=/css/main.min.847a0e43351660d2917b48501a68e692004210084f3d09c49017b8faa5008da0.css integrity="sha256-hHoOQzUWYNKRe0hQGmjmkgBCEAhPPQnEkBe4+qUAjaA=" crossorigin=anonymous type=text/css>
 <link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@0,100;0,400;0,700;1,400&family=Roboto:ital,wght@0,100;0,400;0,700;1,400&display=swap" rel=stylesheet>
 <link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
@@ -83,17 +86,17 @@ animated fadeInDown">
 </div>
 <ul class=social-links>
 <li>
-<a href=https://github.com/wedsonlima rel=me aria-label=Github>
+<a href=https://github.com/wedsonlima rel=me aria-label=Github title=Github>
 <i class="fab fa-github fa-2x" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a href=https://www.linkedin.com/in/wedson-lima/ rel=me aria-label=Linkedin>
+<a href=https://www.linkedin.com/in/wedson-lima/ rel=me aria-label=Linkedin title=Linkedin>
 <i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a href=mailto:wedson.sousa.lima@gmail.com rel=me aria-label=E-mail>
+<a href=mailto:wedson.sousa.lima@gmail.com rel=me aria-label=E-mail title=E-mail>
 <i class="fas fa-envelope fa-2x" aria-hidden=true></i>
 </a>
 </li>
@@ -109,7 +112,10 @@ Wedson Lima
 </ul>
 </div>
 </footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TR379H91C6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-TR379H91C6')</script>
+</div>
 </aside>
 <main>
 <div class=autopagerize_page_element>
@@ -133,11 +139,11 @@ Thu, Sep 30, 2021
 <h2 id=docker-pg-volumes>Docker PG Volumes</h2>
 <p>Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.</p>
 <p>That&rsquo;s how we create a volume to use with a pg version 9.6:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker volume create pgdata96
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker volume create pgdata96
 </code></pre></div><p>And that&rsquo;s how we create a volume for pg 13:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker volume create pgdata13
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker volume create pgdata13
 </code></pre></div><h2 id=docker-pg-containers>Docker PG Containers</h2>
-<p>I like to map each pg version with a similar port. I follow this little pattern:</p>
+<p>I like to map each pg version with a similar port. I follow this simple pattern:</p>
 <table>
 <thead>
 <tr>
@@ -161,26 +167,26 @@ Thu, Sep 30, 2021
 </tbody>
 </table>
 <p>This command will download, run and setup for us a container with a postgres 9.6:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker run --name postgres96 -e POSTGRES_PASSWORD=123456 -d -p 5496:5432 -v pgdata96:/var/lib/postgresql/data postgres:9.6
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run --name postgres96 -e POSTGRES_PASSWORD<span style=color:#f92672>=</span><span style=color:#ae81ff>123456</span> -d -p 5496:5432 -v pgdata96:/var/lib/postgresql/data postgres:9.6
 </code></pre></div><p>And the same for a postgres 13:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker run --name postgres13 -e POSTGRES_PASSWORD=123456 -d -p 5413:5432 -v pgdata13:/var/lib/postgresql/data postgres:13
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run --name postgres13 -e POSTGRES_PASSWORD<span style=color:#f92672>=</span><span style=color:#ae81ff>123456</span> -d -p 5413:5432 -v pgdata13:/var/lib/postgresql/data postgres:13
 </code></pre></div><p>Look how I mapped the ports.</p>
 <h2 id=create-a-db>Create a DB</h2>
 <p>Let&rsquo;s create a database called <strong>todolist</strong> in the pg version 13:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker exec -i postgres13 psql -U postgres -c &#34;CREATE DATABASE todolist WITH OWNER=postgres;&#34;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker exec -i postgres13 psql -U postgres -c <span style=color:#e6db74>&#34;CREATE DATABASE todolist WITH OWNER=postgres;&#34;</span>
 </code></pre></div><p>Or you can log in to the container e create it using <em>psql</em>:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker exec -it postgres13 psql -U postgres
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker exec -it postgres13 psql -U postgres
 </code></pre></div><p>and then</p>
 <pre tabindex=0><code class=language-pgsql data-lang=pgsql>$ CREATE DATABASE todolist;
 </code></pre><h2 id=start-the-container>Start the container</h2>
 <p>When you restart your machine, or for some other reasons unknown, you can start the containers like this:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker start postgres13
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker start postgres13
 </code></pre></div><p>If you need to run other containers you can run like this:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker start postgres13 redis memcached
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker start postgres13 redis memcached
 </code></pre></div><p>That is no need to run the command <code>docker run</code> again.</p>
 <h2 id=restore-a-dump>Restore a dump</h2>
 <p>That&rsquo;s how you can restore a local dump file into a database:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>docker exec -i postgres13 psql -U postgres -d todolist -f dump.sql
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker exec -i postgres13 psql -U postgres -d todolist -f dump.sql
 </code></pre></div><p>And be happy ever after&mldr;</p>
 <hr>
 <p>Wedson Lima
@@ -205,5 +211,8 @@ Wedson Lima
 </ul>
 </div>
 </footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TR379H91C6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-TR379H91C6')</script>
+</body>
 </html>
