@@ -6,7 +6,7 @@ PostgreSQL with Docker
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
-      Just Another Dev
+      Working with multiple PostgreSQL version at the same time
 
 
     ">
@@ -25,19 +25,12 @@ PostgreSQL with Docker
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="PostgreSQL with Docker">
-<meta name=twitter:description content="Using Docker to work with multiple PostgreSQL versions How to work with multiple PostgreSQL versions at the same time without losing my mind?
-That&rsquo;s what we are trying to answer here. With Docker.
-Docker PG Volumes Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.
-That&rsquo;s how we create a volume to use with a pg version 9.6:">
+<meta name=twitter:description content="Working with multiple PostgreSQL version at the same time">
 <script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"post","name":"PostgreSQL with Docker","headline":"PostgreSQL with Docker","alternativeHeadline":"","description":"
-      
-        Using Docker to work with multiple PostgreSQL versions How to work with multiple PostgreSQL versions at the same time without losing my mind?\nThat\u0026rsquo;s what we are trying to answer here. With Docker.\nDocker PG Volumes Data saved in a docker container are lost when that container is destroyed. We can save that data using docker volumes.\nThat\u0026rsquo;s how we create a volume to use with a pg version 9.6:
+      Working with multiple PostgreSQL version at the same time
 
 
-      
-
-
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wedsonlima.github.io\/post\/pg\/pg-with-docker\/"},"author":{"@type":"Person","name":"Wedson Lima"},"creator":{"@type":"Person","name":"Wedson Lima"},"accountablePerson":{"@type":"Person","name":"Wedson Lima"},"copyrightHolder":{"@type":"Person","name":"Wedson Lima"},"copyrightYear":"2021","dateCreated":"2021-09-30T14:53:44.00Z","datePublished":"2021-09-30T14:53:44.00Z","dateModified":"2021-09-30T14:53:44.00Z","publisher":{"@type":"Organization","name":"Wedson Lima","url":"https://wedsonlima.github.io","logo":{"@type":"ImageObject","url":"https:\/\/wedsonlima.github.iofavicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/wedsonlima.github.io\/post\/pg\/pg-with-docker\/","wordCount":"306","genre":[],"keywords":[]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wedsonlima.github.io\/post\/pg\/pg-with-docker\/"},"author":{"@type":"Person","name":"Wedson Lima"},"creator":{"@type":"Person","name":"Wedson Lima"},"accountablePerson":{"@type":"Person","name":"Wedson Lima"},"copyrightHolder":{"@type":"Person","name":"Wedson Lima"},"copyrightYear":"2021","dateCreated":"2021-09-30T00:00:00.00Z","datePublished":"2021-09-30T00:00:00.00Z","dateModified":"2021-09-30T00:00:00.00Z","publisher":{"@type":"Organization","name":"Wedson Lima","url":"https://wedsonlima.github.io","logo":{"@type":"ImageObject","url":"https:\/\/wedsonlima.github.iofavicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/wedsonlima.github.io\/post\/pg\/pg-with-docker\/","wordCount":"313","genre":[],"keywords":["docker","postgres"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -133,7 +126,8 @@ Thu, Sep 30, 2021
 <em class="fas fa-stopwatch"></em>
 <span class=reading-time>2-minute read</span>
 </div>
-</div><h1 id=using-docker-to-work-with-multiple-postgresql-versions>Using Docker to work with multiple PostgreSQL versions</h1>
+</div><p>How to work with multiple PostgreSQL versions at the same time without losing your mind.</p>
+<h1 id=using-docker-to-work-with-multiple-postgresql-versions>Using Docker to work with multiple PostgreSQL versions</h1>
 <p>How to work with multiple PostgreSQL versions at the same time without losing my mind?</p>
 <p>That&rsquo;s what we are trying to answer here. With <strong>Docker</strong>.</p>
 <h2 id=docker-pg-volumes>Docker PG Volumes</h2>
@@ -187,13 +181,10 @@ Thu, Sep 30, 2021
 <h2 id=restore-a-dump>Restore a dump</h2>
 <p>That&rsquo;s how you can restore a local dump file into a database:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker exec -i postgres13 psql -U postgres -d todolist -f dump.sql
-</code></pre></div><p>And be happy ever after&mldr;</p>
-<hr>
-<p>Wedson Lima
-@wedsonlima</p>
-</div>
+</code></pre></div></div>
 <div class=post-footer>
 <div class=info>
+<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/postgres/>postgres</a></span>
 </div>
 </div>
 </div>
